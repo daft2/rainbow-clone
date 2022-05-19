@@ -1,8 +1,10 @@
-import React from 'react'
+import RainbowHeadbar from '../components/molecules/rainbow-headbar/RainbowHeadbar'
 
 function Home() {
 	return (
-		<div>Home</div>
+		<div>
+			<RainbowHeadbar />
+		</div>
 	)
 }
 
