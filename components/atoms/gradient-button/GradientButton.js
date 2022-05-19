@@ -20,7 +20,7 @@ GradientButton.propTypes = {
 	size: PropTypes.string,
 	color: PropTypes.string,
 	onSubmit: PropTypes.func,
-	children: PropTypes.element,
+	children: PropTypes.node,
 }
 
 GradientButton.defaultProps = {
