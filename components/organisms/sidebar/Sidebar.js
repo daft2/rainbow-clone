@@ -5,7 +5,7 @@ import RoundedButton from '../../atoms/rounded-button/RoundedButton'
 
 const Sidebar = () => {
 	return (
-		<div className="w-58 h-screen">
+		<div className="w-64 h-screen">
 			{/* Icon */}
 			<EmoteIcon />
 
@@ -13,8 +13,8 @@ const Sidebar = () => {
 			<div className="my-5">
 				{/* TODO: Change based on current wallet address */}
 				<h1 className='font-extrabold tracking-tighter text-3xl'>0xdaft.eth</h1>
-				<div className="flex gap-3">
-					<h2 className='font-bold tracking-tight text-xl text-slate-500'>0xB7...1234</h2>
+				<div className="flex justify-between">
+					<h2 className='font-bold tracking-tight text-2xl text-slate-500'>0xB7...1234</h2>
 					<GradientButton size='sm'>Copy</GradientButton>
 					<RoundedButton>
 						<svg height='30' viewBox='0 0 30 30' width='30' xmlns="http://www.w3.org/2000/svg">
