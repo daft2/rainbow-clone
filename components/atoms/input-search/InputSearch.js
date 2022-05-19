@@ -12,9 +12,9 @@ const InputSearch = () => {
 				<input
 					type="text"
 					name="search"
-					className="block bg-gradient-to-r text-md bg-opacity-25 backdrop-filter from-gray-200 to-gray-100 w-full rounded-full py-2 pl-9 pr-3 shadow-sm placeholder:font-extrabold placeholder:text-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
+					className="block bg-gradient-to-r placeholder:text-lg bg-opacity-25 backdrop-filter from-slate-200 to-slate-200 w-full rounded-full py-2 pl-9 pr-3 shadow-sm placeholder:font-bold placeholder:text-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
 					placeholder="Search any ENS name or Ethereum address"
-					size='42'
+					size='45'
 				/>
 			</label>
 		</div>
