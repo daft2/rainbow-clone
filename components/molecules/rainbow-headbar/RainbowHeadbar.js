@@ -1,4 +1,4 @@
-import InputSearch from '../../atoms/input-search/InputSearch'
+import InputSearch from '../../molecules/input-search/InputSearch'
 import RainbowIcon from '../../atoms/rainbow-icon/RainbowIcon'
 import PropTypes from 'prop-types'
 
