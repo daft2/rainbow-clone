@@ -5,3 +5,7 @@
 body {
   @apply bg-theme
 }
+
+.hover-zoom-out {
+  @apply duration-200 ease-out hover:scale-110
+}
