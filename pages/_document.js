@@ -10,10 +10,10 @@ class MyDocument extends Document {
 				<Head>
 					<link rel="preconnect" href="https://fonts.googleapis.com" />
 					<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-					<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet" />
+					<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Pacifico&display=swap" rel="stylesheet" />
 					<script src="https://kit.fontawesome.com/e015ee243a.js" crossOrigin="anonymous"></script>
 				</Head>
-				<body className='font-poppins'>
+				<body className='font-m-plus'>
 					<Main />
 					<NextScript />
 				</body>
