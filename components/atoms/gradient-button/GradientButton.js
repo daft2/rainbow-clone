@@ -4,7 +4,7 @@ const GradientButton = ({children, onSubmit}) => {
 	return (
 		<button
 			onClick={onSubmit}
-			className='text-blue-600 font-bold text-lg bg-gradient-to-r from-blue-100 to-blue-100 duration-200 ease-out hover:scale-110 backdrop-filter backdrop-blur-lg rintext-white py-2 px-3 rounded-full'>
+			className='text-blue-600 font-extrabold text-lg bg-gradient-to-r from-blue-100 to-blue-100 hover-zoom-out backdrop-filter backdrop-blur-lg rintext-white py-2 px-3 rounded-full'>
 			{children}
 		</button>
 	)
