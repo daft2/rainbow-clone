@@ -8,6 +8,7 @@ const NftItem = ({ nft }) => {
 	if (imageUrl?.includes('ipfs://')) imageUrl = ImageTranslate.ipfs(imageUrl)
 
 	return (
+		// TODO: Temporary fixes. Need to change later
 		<div className={`${!title ? 'hidden' : null} h-fit overflow-x-clip`}>
 			<img
 				className='w-64 h-60 p-1 rounded-3xl drop-shadow-lg duration-300 ease-out hover:scale-105 cursor-pointer'
