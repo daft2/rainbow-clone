@@ -2,8 +2,9 @@ import CategoryButton from '../../atoms/category-button/CategoryButton'
 import EmoteIcon from '../../atoms/emote-icon/EmoteIcon'
 import GradientButton from '../../atoms/gradient-button/GradientButton'
 import RoundedButton from '../../atoms/rounded-button/RoundedButton'
+import PropTypes from 'prop-types'
 
-const Sidebar = () => {
+const Sidebar = ({ walletAddress }) => {
 	return (
 		<div className="w-64 h-screen">
 			{/* Icon */}
@@ -12,9 +13,9 @@ const Sidebar = () => {
 			{/* Wallet Addr */}
 			<div className="my-5">
 				{/* TODO: Change based on current wallet address */}
-				<h1 className='font-extrabold tracking-tighter text-3xl'>0xdaft.eth</h1>
+				{walletAddress.name && <h1 className='font-extrabold tracking-tighter text-3xl'>{walletAddress.name}</h1>}
 				<div className="flex justify-between">
-					<h2 className='font-bold tracking-tight text-2xl text-slate-500'>0xB7...1234</h2>
+					<h2 className='font-bold tracking-tight text-2xl truncate text-slate-500'>{walletAddress.address}</h2>
 					<GradientButton size='sm'>Copy</GradientButton>
 					<RoundedButton>
 						<svg height='30' viewBox='0 0 30 30' width='30' xmlns="http://www.w3.org/2000/svg">
@@ -35,6 +36,10 @@ const Sidebar = () => {
 			</div>
 		</div>
 	)
+}
+
+Sidebar.propTypes = {
+	walletAddress: PropTypes.object
 }
 
 export default Sidebar
