@@ -12,8 +12,7 @@ const Sidebar = ({ walletAddress }) => {
 
 			{/* Wallet Addr */}
 			<div className="my-5">
-				{/* TODO: Change based on current wallet address */}
-				{walletAddress.name && <h1 className='font-extrabold tracking-tighter text-3xl'>{walletAddress.name}</h1>}
+				{walletAddress.name !== null && <h1 className='font-extrabold tracking-tighter text-3xl'>{walletAddress.name}</h1>}
 				<div className="flex justify-between">
 					<h2 className='font-bold tracking-tight text-2xl truncate text-slate-500'>{walletAddress.address}</h2>
 					<GradientButton size='sm'>Copy</GradientButton>
