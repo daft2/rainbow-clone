@@ -4,12 +4,15 @@ import { useState, useEffect } from 'react'
 import NftItem from '../components/atoms/nft-item/NftItem'
 import RainbowHeadbar from '../components/molecules/rainbow-headbar/RainbowHeadbar'
 import Sidebar from '../components/organisms/sidebar/Sidebar'
+import { createAlchemyWeb3 } from '@alch/alchemy-web3'
 
 const Profile = () => {
 	const [walletAddress, setWalletAddress] = useState({})
+	const [nftData, setNftData] = useState([])
 	const router = useRouter()
 	const { slugAddress } = router.query
 	const provider = new ethers.providers.CloudflareProvider()
+	const web3 = createAlchemyWeb3(`https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`)
 
 	useEffect(() => {
 		if (!slugAddress) {
@@ -22,7 +25,13 @@ const Profile = () => {
 			setWalletAddress(address)
 		}
 
+		const getNFTs = async () => {
+			const nfts = await web3.alchemy.getNfts({ owner: slugAddress })
+			setNftData(nfts)
+		}
+
 		getWalletAddress()
+		getNFTs()
 	}, [slugAddress])
 
 	return (
@@ -36,8 +45,15 @@ const Profile = () => {
 						<span>🖼</span>
 						<h1 className='mx-2 font-extrabold'>All</h1>
 					</div>
-					<div className="grid h-screen overflow-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-						{[...Array(10)].map((item, index) => <NftItem key={index}/>)}
+					<div className="h-screen overflow-auto">
+						<div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+							{nftData?.ownedNfts?.map((nft, index) =>
+								<NftItem
+									key={index}
+									nft={nft}
+								/>
+							)}
+						</div>
 					</div>
 				</div>
 			</div>
