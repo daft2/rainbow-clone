@@ -7,6 +7,7 @@ import Sidebar from '../components/organisms/sidebar/Sidebar'
 import { createAlchemyWeb3 } from '@alch/alchemy-web3'
 import GradientButton from '../components/atoms/gradient-button/GradientButton'
 import WalletNotFound from '../components/atoms/wallet-not-found/WalletNotFound'
+import RegexTranslate from '../utils/regex-translate'
 
 const Profile = () => {
 	const [walletAddress, setWalletAddress] = useState({})
@@ -24,8 +25,12 @@ const Profile = () => {
 
 		const getWalletAddress = async () => {
 			try {
-				const address = await provider.getResolver(slugAddress)
-				setWalletAddress(address)
+				if(slugAddress.includes('.eth')){
+					const address = await provider.getResolver(slugAddress)
+					setWalletAddress(address)
+				} else if(RegexTranslate.validEthereumAddress(slugAddress) !== null){
+					setWalletAddress({address: slugAddress})
+				}
 			} catch (error) {
 				console.error({error})
 			}
