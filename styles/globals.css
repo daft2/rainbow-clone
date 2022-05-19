@@ -9,3 +9,11 @@ body {
 .hover-zoom-out {
   @apply duration-200 ease-out hover:scale-110
 }
+
+.gradient-blue {
+  @apply bg-gradient-to-r from-blue-100 to-blue-100
+}
+
+.gradient-slate {
+  @apply bg-gradient-to-r from-slate-200 to-slate-200
+}
