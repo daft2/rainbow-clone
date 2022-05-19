@@ -78,7 +78,7 @@ const Profile = () => {
 				</div>
 			}
 
-			<WalletNotFound />
+			{!walletAddress && <WalletNotFound />}
 		</div>
 	)
 }
