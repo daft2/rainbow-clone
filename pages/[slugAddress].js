@@ -14,40 +14,34 @@ const Profile = () => {
 	const [nftData, setNftData] = useState([])
 	const router = useRouter()
 	const { slugAddress } = router.query
-	const provider = new ethers.providers.CloudflareProvider()
+	const provider = new ethers.providers.AlchemyProvider()
 	// eslint-disable-next-line no-undef
 	const web3 = createAlchemyWeb3(`https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`)
 
 	useEffect(() => {
-		if (!slugAddress) {
-			return
-		}
-
 		const getWalletAddress = async () => {
-			try {
-				if(slugAddress.includes('.eth')){
-					const address = await provider.getResolver(slugAddress)
-					setWalletAddress(address)
-				} else if(RegexTranslate.validEthereumAddress(slugAddress) !== null){
-					setWalletAddress({address: slugAddress})
-				}
-			} catch (error) {
-				console.error({error})
-			}
-		}
-
-		const getNFTs = async () => {
-			try {
-				const nfts = await web3.alchemy.getNfts({ owner: slugAddress })
-				setNftData(nfts)
-			} catch (error) {
-				console.error({error})
+			if(slugAddress.includes('.eth')){
+				const address = await provider.resolveName(slugAddress)
+				setWalletAddress({name: slugAddress, address: address})
+			} else if (RegexTranslate.validEthereumAddress(slugAddress) !== null) {
+				const ensName = await provider.lookupAddress(slugAddress)
+				setWalletAddress({name: ensName,address: slugAddress})
 			}
 		}
 
 		getWalletAddress()
-		getNFTs()
+			.catch((error) => console.error({error}))
 	}, [slugAddress])
+
+	useEffect(() => {
+		const getNfts = async () => {
+			const nfts = await web3.alchemy.getNfts({ owner: walletAddress?.address })
+			setNftData(nfts)
+		}
+
+		getNfts()
+			.catch((error) => console.error({error}))
+	}, [walletAddress])
 
 	return (
 		<div>
