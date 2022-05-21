@@ -27,7 +27,7 @@ const Modal = ({ isOpen, selectedNft}) => {
 			</span>
 			<div className={'z-20 fixed flex inset-0 justify-center items-center'}>
 				<div
-					className="relativ flex justify-center sm:items-center sm:flex-col md:items-start md:flex-row">
+					className="relative flex justify-center sm:items-center sm:flex-col md:items-start md:flex-row">
 					<div className="rounded-3xl w-96 mb-5 shadow-2xl bg-black">
 						<img
 							className='object-fit w-96 rounded-3xl'
