@@ -5,7 +5,7 @@ function Home() {
 		<div>
 			<RainbowHeadbar title={'Pelangi'}>
 				<a
-					href="https://twitter.com/0xobject"
+					href="https://twitter.com/0xdaft"
 					target='_blank'
 					rel="noreferrer"
 				>
