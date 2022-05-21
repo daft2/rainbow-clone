@@ -7,9 +7,9 @@ const TextUtils = {
 			frontChars = Math.ceil(charsToShow/2),
 			backChars = Math.floor(charsToShow / 2)
 
-		return text.substr(0, frontChars) +
+		return text?.substr(0, frontChars) +
       separator +
-      text.substr(text.length - backChars)
+      text?.substr(text.length - backChars)
 	}
 }
 
