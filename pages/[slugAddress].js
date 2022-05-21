@@ -11,7 +11,7 @@ import RegexTranslate from '../utils/regex-translate'
 import Modal from '../components/organisms/modal/Modal'
 
 const Profile = () => {
-	const [walletAddress, setWalletAddress] = useState({})
+	const [walletAddress, setWalletAddress] = useState(null)
 	const [isOpen, setIsOpen] = useState(false)
 	const [nftData, setNftData] = useState([])
 	const [selectedNft, setSelectedNft] = useState(null)
@@ -58,7 +58,7 @@ const Profile = () => {
 			</RainbowHeadbar>
 			<Modal selectedNft={selectedNft} isOpen={isOpen} />
 			{
-				walletAddress && <div className="flex mx-10 mt-10">
+				walletAddress !== null && <div className="flex mx-10 mt-10">
 					<Sidebar walletAddress={walletAddress} />
 					{/* NFT Display */}
 					<div className="flex flex-col mx-16">
@@ -67,7 +67,7 @@ const Profile = () => {
 							<h1 className='mx-2 font-extrabold'>All</h1>
 						</div>
 						{
-							nftData?.ownedNfts > 0 ?
+							nftData?.ownedNfts.length > 0 ?
 								<div className="h-screen overflow-auto">
 									<div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 										{nftData?.ownedNfts?.map((nft, index) =>
