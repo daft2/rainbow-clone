@@ -30,7 +30,7 @@ const Modal = ({ isOpen, selectedNft}) => {
 					className="relativ flex justify-center sm:items-center sm:flex-col md:items-start md:flex-row">
 					<div className="rounded-3xl w-96 mb-5 shadow-2xl bg-black">
 						<img
-							className=''
+							className='object-fit w-96'
 							src={imageUrl}
 							alt=""
 						/>
