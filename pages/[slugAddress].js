@@ -8,15 +8,23 @@ import { createAlchemyWeb3 } from '@alch/alchemy-web3'
 import GradientButton from '../components/atoms/gradient-button/GradientButton'
 import WalletNotFound from '../components/atoms/wallet-not-found/WalletNotFound'
 import RegexTranslate from '../utils/regex-translate'
+import Modal from '../components/organisms/modal/Modal'
 
 const Profile = () => {
 	const [walletAddress, setWalletAddress] = useState({})
+	const [isOpen, setIsOpen] = useState(false)
 	const [nftData, setNftData] = useState([])
+	const [selectedNft, setSelectedNft] = useState(null)
 	const router = useRouter()
 	const { slugAddress } = router.query
 	const provider = new ethers.providers.AlchemyProvider()
 	// eslint-disable-next-line no-undef
 	const web3 = createAlchemyWeb3(`https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`)
+
+	const handleModal = (nft) => {
+		setSelectedNft(nft)
+		setIsOpen(!isOpen)
+	}
 
 	useEffect(() => {
 		const getWalletAddress = async () => {
@@ -35,7 +43,7 @@ const Profile = () => {
 
 	useEffect(() => {
 		const getNfts = async () => {
-			const nfts = await web3.alchemy.getNfts({ owner: walletAddress?.address })
+			const nfts = await web3.alchemy.getNfts({ owner: walletAddress.address })
 			setNftData(nfts)
 		}
 
@@ -48,6 +56,7 @@ const Profile = () => {
 			<RainbowHeadbar>
 				<GradientButton>Open in the app</GradientButton>
 			</RainbowHeadbar>
+			<Modal selectedNft={selectedNft} isOpen={isOpen} />
 			{
 				walletAddress && <div className="flex mx-10 mt-10">
 					<Sidebar walletAddress={walletAddress} />
@@ -65,6 +74,7 @@ const Profile = () => {
 											<NftItem
 												key={index}
 												nft={nft}
+												handleModal={() => handleModal(nft)}
 											/>
 										)}
 									</div>
