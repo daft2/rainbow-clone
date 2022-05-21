@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import ImageTranslate from '../../../utils/image-translate'
 
-const NftItem = ({ nft }) => {
+const NftItem = ({ nft, handleModal }) => {
 	const {title, metadata} = nft
 	let imageUrl = metadata.image || metadata.image_url
 
@@ -14,6 +14,7 @@ const NftItem = ({ nft }) => {
 				className='w-64 h-60 p-1 rounded-3xl drop-shadow-lg duration-300 ease-out hover:scale-105 cursor-pointer'
 				src={imageUrl}
 				alt="NFT Asset Image"
+				onClick={handleModal}
 			/>
 			<h2 className='text-slate-500 font-bold mt-2 truncate'>{title}</h2>
 		</div>
@@ -21,7 +22,8 @@ const NftItem = ({ nft }) => {
 }
 
 NftItem.propTypes = {
-	nft: PropTypes.object
+	nft: PropTypes.object,
+	handleModal: PropTypes.func,
 }
 
 export default NftItem
