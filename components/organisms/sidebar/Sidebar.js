@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import TextUtils from '../../../utils/text-utils'
 
 const Sidebar = ({ walletAddress }) => {
-	const truncateAddress = TextUtils.truncate(walletAddress?.address)
+	const truncateAddress = TextUtils.truncate(walletAddress.address)
 	const [isCopied, setIsCopied] = useState(false)
 
 	const copyClipboard = () => {
