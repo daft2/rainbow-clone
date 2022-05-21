@@ -17,3 +17,7 @@ body {
 .gradient-slate {
   @apply bg-gradient-to-r from-slate-200 to-slate-200
 }
+
+.shadow-around {
+  box-shadow: rgb(37 41 46 / 20%) 0px 10px 30px
+}
