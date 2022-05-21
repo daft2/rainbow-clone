@@ -5,8 +5,9 @@ import {useState} from 'react'
 import RoundedButton from '../../atoms/rounded-button/RoundedButton'
 import PropTypes from 'prop-types'
 import TextUtils from '../../../utils/text-utils'
+import WalletInfoLoadingPlaceholder from '../../molecules/wallet-info-loading-placeholder/WalletInfoLoadingPlaceholder'
 
-const Sidebar = ({ walletAddress }) => {
+const Sidebar = ({ walletAddress, isLoading }) => {
 	const truncateAddress = TextUtils.truncate(walletAddress.address)
 	const [isCopied, setIsCopied] = useState(false)
 
@@ -26,18 +27,22 @@ const Sidebar = ({ walletAddress }) => {
 			<EmoteIcon />
 
 			{/* Wallet Addr */}
-			<div className="my-5">
-				{walletAddress.name !== null && <h1 className='font-extrabold tracking-tighter text-3xl'>{walletAddress.name}</h1>}
-				<div className="flex justify-between">
-					<h2 className='font-bold tracking-tight text-2xl text-slate-500'>{truncateAddress}</h2>
-					<GradientButton size='sm' onSubmit={copyClipboard}>{isCopied ? 'Copied' : 'Copy'}</GradientButton>
-					<RoundedButton>
-						<svg height='30' viewBox='0 0 30 30' width='30' xmlns="http://www.w3.org/2000/svg">
-							<path d="M11.0244 14.8677C11.0244 13.7346 10.1805 12.8984 9.04738 12.8984C7.96898 12.8984 7.07812 13.7737 7.07812 14.8677C7.07812 15.907 7.96898 16.8369 9.04738 16.8369C10.0945 16.8369 11.0244 15.907 11.0244 14.8677ZM16.9635 14.8677C16.9635 13.7346 16.1273 12.8984 14.9942 12.8984C13.9236 12.8984 13.0328 13.7737 13.0328 14.8677C13.0328 15.907 13.9236 16.8369 14.9942 16.8369C16.0414 16.8369 16.9635 15.907 16.9635 14.8677ZM22.9181 14.8677C22.9181 13.7346 22.082 12.8984 20.9489 12.8984C19.8705 12.8984 18.9718 13.7737 18.9718 14.8677C18.9718 15.907 19.8705 16.8369 20.9489 16.8369C21.996 16.8369 22.9181 15.907 22.9181 14.8677Z" fill="#3C4252" fillOpacity="0.6"></path>
-						</svg>
-					</RoundedButton>
+			{isLoading && <WalletInfoLoadingPlaceholder />}
+
+			{
+				!isLoading && <div className="my-5">
+					{walletAddress.name !== null && <h1 className='font-extrabold tracking-tighter text-3xl'>{walletAddress.name}</h1>}
+					<div className="flex justify-between">
+						<h2 className='font-bold tracking-tight text-2xl text-slate-500'>{truncateAddress}</h2>
+						<GradientButton size='sm' onSubmit={copyClipboard}>{isCopied ? 'Copied' : 'Copy'}</GradientButton>
+						<RoundedButton>
+							<svg height='30' viewBox='0 0 30 30' width='30' xmlns="http://www.w3.org/2000/svg">
+								<path d="M11.0244 14.8677C11.0244 13.7346 10.1805 12.8984 9.04738 12.8984C7.96898 12.8984 7.07812 13.7737 7.07812 14.8677C7.07812 15.907 7.96898 16.8369 9.04738 16.8369C10.0945 16.8369 11.0244 15.907 11.0244 14.8677ZM16.9635 14.8677C16.9635 13.7346 16.1273 12.8984 14.9942 12.8984C13.9236 12.8984 13.0328 13.7737 13.0328 14.8677C13.0328 15.907 13.9236 16.8369 14.9942 16.8369C16.0414 16.8369 16.9635 15.907 16.9635 14.8677ZM22.9181 14.8677C22.9181 13.7346 22.082 12.8984 20.9489 12.8984C19.8705 12.8984 18.9718 13.7737 18.9718 14.8677C18.9718 15.907 19.8705 16.8369 20.9489 16.8369C21.996 16.8369 22.9181 15.907 22.9181 14.8677Z" fill="#3C4252" fillOpacity="0.6"></path>
+							</svg>
+						</RoundedButton>
+					</div>
 				</div>
-			</div>
+			}
 
 			{/* Category */}
 			<div>
@@ -53,7 +58,8 @@ const Sidebar = ({ walletAddress }) => {
 }
 
 Sidebar.propTypes = {
-	walletAddress: PropTypes.object
+	walletAddress: PropTypes.object,
+	isLoading: PropTypes.bool
 }
 
 export default Sidebar

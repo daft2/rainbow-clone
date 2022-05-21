@@ -9,12 +9,20 @@ import GradientButton from '../components/atoms/gradient-button/GradientButton'
 import WalletNotFound from '../components/atoms/wallet-not-found/WalletNotFound'
 import RegexTranslate from '../utils/regex-translate'
 import Modal from '../components/organisms/modal/Modal'
+import NftItemLoadingPlaceholder from '../components/molecules/nft-item-loading-placeholder/NftItemLoadingPlaceholder'
 
 const Profile = () => {
 	const [walletAddress, setWalletAddress] = useState(null)
-	const [isOpen, setIsOpen] = useState(false)
 	const [nftData, setNftData] = useState([])
 	const [selectedNft, setSelectedNft] = useState(null)
+
+	// Modal State
+	const [isOpen, setIsOpen] = useState(false)
+
+	//Loading State
+	const [isWalletLoading, setIsWalletLoading] = useState(false)
+	const [isNftLoading, setIsNftLoading] = useState(false)
+
 	const router = useRouter()
 	const { slugAddress } = router.query
 	const provider = new ethers.providers.AlchemyProvider()
@@ -27,6 +35,8 @@ const Profile = () => {
 	}
 
 	useEffect(() => {
+		setIsWalletLoading(true)
+		setIsNftLoading(true)
 		const getWalletAddress = async () => {
 			if(slugAddress.includes('.eth')){
 				const address = await provider.resolveName(slugAddress)
@@ -38,7 +48,8 @@ const Profile = () => {
 		}
 
 		getWalletAddress()
-			.catch((error) => console.error({error}))
+			.catch((error) => console.error({ error }))
+			.finally(() => setIsWalletLoading(false))
 	}, [slugAddress])
 
 	useEffect(() => {
@@ -48,7 +59,8 @@ const Profile = () => {
 		}
 
 		getNfts()
-			.catch((error) => console.error({error}))
+			.catch((error) => console.error({ error }))
+			.finally(() => setIsNftLoading(false))
 	}, [walletAddress])
 
 	return (
@@ -59,7 +71,7 @@ const Profile = () => {
 			<Modal selectedNft={selectedNft} isOpen={isOpen} />
 			{
 				walletAddress !== null && <div className="flex mx-10 mt-10">
-					<Sidebar walletAddress={walletAddress} />
+					<Sidebar isLoading={isWalletLoading} walletAddress={walletAddress} />
 					{/* NFT Display */}
 					<div className="flex flex-col mx-16">
 						<div className='flex text-2xl my-2'>
@@ -67,7 +79,7 @@ const Profile = () => {
 							<h1 className='mx-2 font-extrabold'>All</h1>
 						</div>
 						{
-							nftData?.ownedNfts?.length > 0 ?
+							!isNftLoading && nftData?.ownedNfts?.length > 0 &&
 								<div className="h-screen overflow-auto">
 									<div className="grid gap-8 mt-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 										{nftData?.ownedNfts?.map((nft, index) =>
@@ -79,15 +91,19 @@ const Profile = () => {
 										)}
 									</div>
 								</div>
-								: <div className="p-24">
-									<h1 className='text-2xl font-extrabold text-slate-400'>This address didnt have any NFT... 🗿</h1>
-								</div>
 						}
+
+						{!isNftLoading && nftData?.ownedNfts?.length == 0 &&
+							<div className="p-24">
+								<h1 className='text-2xl font-extrabold text-slate-400'>This address didnt have any NFT... 🗿</h1>
+							</div>
+						}
+						{isNftLoading && <NftItemLoadingPlaceholder />}
 					</div>
 				</div>
 			}
 
-			{!walletAddress && <WalletNotFound />}
+			{!walletAddress && !isWalletLoading && <WalletNotFound />}
 		</div>
 	)
 }
