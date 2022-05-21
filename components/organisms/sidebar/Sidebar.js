@@ -3,8 +3,11 @@ import EmoteIcon from '../../atoms/emote-icon/EmoteIcon'
 import GradientButton from '../../atoms/gradient-button/GradientButton'
 import RoundedButton from '../../atoms/rounded-button/RoundedButton'
 import PropTypes from 'prop-types'
+import TextUtils from '../../../utils/text-utils'
 
 const Sidebar = ({ walletAddress }) => {
+	const truncateAddress = TextUtils.truncate(walletAddress?.address)
+
 	const copyClipboard = () => {
 		if (navigator && navigator.clipboard && navigator.clipboard.writeText)
 			return navigator.clipboard.writeText(walletAddress.address)
@@ -20,7 +23,7 @@ const Sidebar = ({ walletAddress }) => {
 			<div className="my-5">
 				{walletAddress.name !== null && <h1 className='font-extrabold tracking-tighter text-3xl'>{walletAddress.name}</h1>}
 				<div className="flex justify-between">
-					<h2 className='font-bold tracking-tight text-2xl truncate text-slate-500'>{walletAddress.address}</h2>
+					<h2 className='font-bold tracking-tight text-2xl text-slate-500'>{truncateAddress}</h2>
 					<GradientButton size='sm' onSubmit={copyClipboard}>Copy</GradientButton>
 					<RoundedButton>
 						<svg height='30' viewBox='0 0 30 30' width='30' xmlns="http://www.w3.org/2000/svg">
