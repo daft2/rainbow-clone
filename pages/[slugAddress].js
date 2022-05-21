@@ -67,9 +67,9 @@ const Profile = () => {
 							<h1 className='mx-2 font-extrabold'>All</h1>
 						</div>
 						{
-							nftData?.ownedNfts.length > 0 ?
+							nftData?.ownedNfts?.length > 0 ?
 								<div className="h-screen overflow-auto">
-									<div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+									<div className="grid gap-8 mt-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 										{nftData?.ownedNfts?.map((nft, index) =>
 											<NftItem
 												key={index}
