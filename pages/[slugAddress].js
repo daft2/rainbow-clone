@@ -70,10 +70,10 @@ const Profile = () => {
 			</RainbowHeadbar>
 			<Modal selectedNft={selectedNft} isOpen={isOpen} />
 			{
-				walletAddress !== null && <div className="flex mx-10 mt-10">
+				walletAddress !== null && <div className="flex flex-col lg:flex-row mx-10 mt-10">
 					<Sidebar isLoading={isWalletLoading} walletAddress={walletAddress} />
 					{/* NFT Display */}
-					<div className="flex flex-col mx-16">
+					<div className="flex flex-col sm:mx-10 xl:mx-16">
 						<div className='flex text-2xl my-2'>
 							<span>🖼</span>
 							<h1 className='mx-2 font-extrabold'>All</h1>
@@ -81,7 +81,7 @@ const Profile = () => {
 						{
 							!isNftLoading && nftData?.ownedNfts?.length > 0 &&
 								<div className="h-screen overflow-auto">
-									<div className="grid gap-8 mt-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+									<div className="grid gap-8 mt-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
 										{nftData?.ownedNfts?.map((nft, index) =>
 											<NftItem
 												key={index}

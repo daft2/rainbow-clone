@@ -20,7 +20,7 @@ function Home() {
 				</a>
 			</RainbowHeadbar>
 			<div className="flex py-16 justify-center w-screen">
-				<h1 className='text-6xl w-6/12 text-center font-extrabold'>Explore the new world of Ethereum 🌍 🖼 ✨</h1>
+				<h1 className='text-4xl sm:text-6xl w-66 md:w-6/12 text-center font-extrabold'>Explore the new world of Ethereum 🌍 🖼 ✨</h1>
 			</div>
 			<div className="flex justify-center">
 				<h1 className='text-slate-400 snap-center font-extrabold'>made with 💖 by 0xdaft.eth</h1>

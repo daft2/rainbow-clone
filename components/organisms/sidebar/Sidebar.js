@@ -22,7 +22,7 @@ const Sidebar = ({ walletAddress, isLoading }) => {
 	}
 
 	return (
-		<div className="w-64 h-screen">
+		<div className="flex flex-col justify-center items-center h-fit">
 			{/* Icon */}
 			<EmoteIcon />
 
@@ -30,7 +30,7 @@ const Sidebar = ({ walletAddress, isLoading }) => {
 			{isLoading && <WalletInfoLoadingPlaceholder />}
 
 			{
-				!isLoading && <div className="my-5">
+				!isLoading && <div className="flex justify-center items-center sm:justify-start sm:items-start flex-col my-5">
 					{walletAddress.name !== null && <h1 className='font-extrabold tracking-tighter text-3xl'>{walletAddress.name}</h1>}
 					<div className="flex justify-between">
 						<h2 className='font-bold tracking-tight text-2xl text-slate-500'>{truncateAddress}</h2>
@@ -45,7 +45,7 @@ const Sidebar = ({ walletAddress, isLoading }) => {
 			}
 
 			{/* Category */}
-			<div>
+			<div className='hidden lg:flex sm:w-full'>
 				<CategoryButton
 					emote={'🖼'}
 					text={'All'}

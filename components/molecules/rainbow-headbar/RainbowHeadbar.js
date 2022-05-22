@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 
 const RainbowHeadbar = ({children, title}) => {
 	return (
-		<div className='flex justify-between items-center mt-6 mx-10'>
+		<div className='flex justify-between gap-3 items-center mt-6 mx-5 md:mx-10'>
 			<div className="flex items-center">
 				<RainbowIcon />
 				<span className='pl-3 hidden md:block text-2xl font-extrabold'>{title}</span>
 			</div>
 			<InputSearch />
-			<div className='flex gap-3'>
+			<div className='hidden sm:flex gap-3'>
 				{children}
 			</div>
 		</div>

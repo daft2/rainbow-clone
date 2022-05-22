@@ -10,9 +10,9 @@ const NftItem = ({ nft, handleModal }) => {
 	return (
 		// TODO: Temporary fixes. Need to change later
 		<div className={`${!title ? 'hidden' : null} w-fit h-fit`}>
-			<div className="bg-theme shadow-around rounded-3xl w-fit h-fit">
+			<div className="bg-theme shadow-around rounded-3xl w-32 sm:w-36 md:w-44 xl:w-56">
 				<img
-					className='object-cover rounded-3xl w-56 h-56 duration-300 ease-out hover:scale-105 cursor-pointer'
+					className='object-cover rounded-3xl w-fit h-fit duration-300 ease-out hover:scale-105 cursor-pointer'
 					src={imageUrl}
 					alt="NFT Asset Image"
 					onClick={handleModal}
