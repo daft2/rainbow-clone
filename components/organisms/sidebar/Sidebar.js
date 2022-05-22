@@ -30,7 +30,7 @@ const Sidebar = ({ walletAddress, isLoading }) => {
 			{isLoading && <WalletInfoLoadingPlaceholder />}
 
 			{
-				!isLoading && <div className="flex justify-center items-center sm:justify-start sm:items-start flex-col my-5">
+				!isLoading && <div className="flex justify-center items-center lg:justify-start lg:items-start flex-col my-5">
 					{walletAddress.name !== null && <h1 className='font-extrabold tracking-tighter text-3xl'>{walletAddress.name}</h1>}
 					<div className="flex justify-between">
 						<h2 className='font-bold tracking-tight text-2xl text-slate-500'>{truncateAddress}</h2>
