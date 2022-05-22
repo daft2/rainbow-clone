@@ -69,17 +69,16 @@ const Profile = () => {
 				<GradientButton>Open in the app</GradientButton>
 			</RainbowHeadbar>
 			<Modal selectedNft={selectedNft} isOpen={isOpen} />
-			{
-				walletAddress !== null && <div className="flex flex-col lg:flex-row mx-10 mt-10">
-					<Sidebar isLoading={isWalletLoading} walletAddress={walletAddress} />
-					{/* NFT Display */}
-					<div className="flex flex-col sm:mx-10 xl:mx-16">
-						<div className='flex text-2xl my-2'>
-							<span>🖼</span>
-							<h1 className='mx-2 font-extrabold'>All</h1>
-						</div>
-						{
-							!isNftLoading && nftData?.ownedNfts?.length > 0 &&
+			<div className="flex flex-col lg:flex-row mx-10 mt-10">
+				<Sidebar isLoading={isWalletLoading} walletAddress={walletAddress} />
+				{/* NFT Display */}
+				<div className="flex flex-col sm:mx-10 xl:mx-16">
+					<div className='flex text-2xl my-2'>
+						<span>🖼</span>
+						<h1 className='mx-2 font-extrabold'>All</h1>
+					</div>
+					{
+						!isNftLoading && nftData?.ownedNfts?.length > 0 &&
 								<div className="h-screen overflow-auto">
 									<div className="grid gap-8 mt-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
 										{nftData?.ownedNfts?.map((nft, index) =>
@@ -91,17 +90,17 @@ const Profile = () => {
 										)}
 									</div>
 								</div>
-						}
+					}
 
-						{!isNftLoading && nftData?.ownedNfts?.length == 0 &&
+					{!isNftLoading && nftData?.ownedNfts?.length == 0 &&
 							<div className="p-24">
 								<h1 className='text-2xl font-extrabold text-slate-400'>This address didnt have any NFT... 🗿</h1>
 							</div>
-						}
-						{isNftLoading && <NftItemLoadingPlaceholder />}
-					</div>
+					}
+					{isNftLoading && <NftItemLoadingPlaceholder />}
 				</div>
-			}
+			</div>
+
 
 			{!walletAddress && !isWalletLoading && <WalletNotFound />}
 		</div>
