@@ -27,17 +27,17 @@ const Modal = ({ isOpen, selectedNft}) => {
 			</span>
 			<div className={'z-20 fixed flex inset-0 justify-center items-center'}>
 				<div
-					className="relative flex justify-center sm:items-center sm:flex-col md:items-start md:flex-row">
-					<div className="rounded-3xl w-96 mb-5 shadow-2xl bg-black">
+					className="relative flex items-center flex-col lg:items-start lg:flex-row">
+					<div className="rounded-3xl w-80 h-80 lg:w-96 lg:h-96 my-5 lg:my-0 shadow-2xl bg-black">
 						<img
-							className='object-fit w-96 rounded-3xl'
+							className='object-fit w-80 lg:w-96 rounded-3xl'
 							src={imageUrl}
 							alt=""
 						/>
 					</div>
 					<div
-						className="bg-white h-fit mx-5 p-5 max-w-lg flex flex-wrap flex-col shadow-2xl rounded-3xl">
-						<div className='w-96'>
+						className="bg-white w-80 h-80 lg:w-96 lg:h-96 mx-5 p-5 max-w-lg flex overflow-y-auto flex-col shadow-2xl rounded-3xl">
+						<div>
 							<h2 className='font-bold text-black text-opacity-50'>Collection Name</h2>
 							<h1 className='font-extrabold text-2xl mb-3'>{selectedNft?.title}</h1>
 						</div>
