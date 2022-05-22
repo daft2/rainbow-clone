@@ -79,7 +79,7 @@ const Profile = () => {
 					</div>
 					{
 						!isNftLoading && nftData?.ownedNfts?.length > 0 &&
-									<div className="grid h-screen overflow-y-auto gap-8 mt-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+									<div className="grid p-2 h-screen overflow-y-auto mt-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
 										{nftData?.ownedNfts?.map((nft, index) =>
 											<NftItem
 												key={index}
