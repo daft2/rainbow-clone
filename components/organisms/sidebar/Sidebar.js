@@ -22,7 +22,7 @@ const Sidebar = ({ walletAddress, isLoading }) => {
 	}
 
 	return (
-		<div className="flex flex-col justify-center items-center h-fit">
+		<div className="flex flex-col justify-center items-center lg:justify-start lg:items-start h-fit">
 			{/* Icon */}
 			<EmoteIcon />
 
