@@ -12,7 +12,7 @@ const NftItem = ({ nft, handleModal }) => {
 	if (imageUrl?.includes('ipfs://')) imageUrl = ImageTranslate.ipfs(imageUrl)
 
 	return (
-		<div className={'h-fit'}>
+		<div className={`${!nftName && 'hidden'} h-fit`}>
 			<div className="bg-theme shadow-around rounded-3xl w-32 sm:w-36 md:w-44 xl:w-56 h-fit">
 				{imageUrl?.includes('.mp4') ?
 					<video
