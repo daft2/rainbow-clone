@@ -29,11 +29,21 @@ const Modal = ({ isOpen, selectedNft}) => {
 				<div
 					className="relative flex items-center flex-col lg:items-start lg:flex-row">
 					<div className="rounded-3xl w-80 h-80 lg:w-96 lg:h-96 my-5 lg:my-0 shadow-2xl bg-black">
-						<img
+						{imageUrl?.includes('.mp4') ? <video
 							className='object-fit w-80 lg:w-96 rounded-3xl'
 							src={imageUrl}
 							alt=""
+							preload='auto'
+							autoPlay={true}
+							controls
+							loop
 						/>
+							: <img
+								className='object-fit w-80 lg:w-96 rounded-3xl'
+								src={imageUrl}
+								alt=""
+							/>
+						}
 					</div>
 					<div
 						className="bg-white w-80 h-80 lg:w-96 lg:h-96 mx-5 p-5 max-w-lg flex overflow-y-auto flex-col shadow-2xl rounded-3xl">
@@ -50,7 +60,7 @@ const Modal = ({ isOpen, selectedNft}) => {
 						}
 
 						{
-							selectedNft?.metadata.attributes && <div>
+							selectedNft?.metadata.attributes.length > 0 && <div>
 								<h2 className='font-extrabold text-lg my-2'>Attributes</h2>
 								<div className="flex flex-wrap">
 									{selectedNft?.metadata.attributes && selectedNft?.metadata.attributes.map((attribute,index) =>
