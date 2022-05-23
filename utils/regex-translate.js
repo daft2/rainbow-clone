@@ -4,6 +4,17 @@ const RegexTranslate = {
 		const result = address.match(pattern)
 
 		return result
+	},
+	getMetadataFromURI: (data) => {
+		const result = data.replace('data:application/json;utf8,', '')
+
+		if (result[0] !== '{') {
+			return null
+		}
+
+		const sanitizeResult = JSON.parse(result)
+
+		return sanitizeResult
 	}
 }
 
