@@ -23,6 +23,8 @@ const Profile = () => {
 	const [isWalletLoading, setIsWalletLoading] = useState(false)
 	const [isNftLoading, setIsNftLoading] = useState(false)
 
+	const isAddressNull = walletAddress?.address == null
+
 	const router = useRouter()
 	const { slugAddress } = router.query
 	const provider = new ethers.providers.AlchemyProvider()
@@ -69,7 +71,7 @@ const Profile = () => {
 				<GradientButton>Open in the app</GradientButton>
 			</RainbowHeadbar>
 			<Modal selectedNft={selectedNft} isOpen={isOpen} />
-			<div className="flex flex-col lg:flex-row mx-10 mt-10">
+			<div className={`${isAddressNull && 'hidden'} flex flex-col lg:flex-row mx-10 mt-10`}>
 				<Sidebar isLoading={isWalletLoading} walletAddress={walletAddress} />
 				{/* NFT Display */}
 				<div className="flex flex-col sm:mx-10 xl:mx-16">
@@ -100,7 +102,7 @@ const Profile = () => {
 			</div>
 
 
-			{!walletAddress && !isWalletLoading && <WalletNotFound />}
+			{isAddressNull && !isWalletLoading && <WalletNotFound />}
 		</div>
 	)
 }
