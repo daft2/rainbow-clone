@@ -60,7 +60,7 @@ const Modal = ({ isOpen, selectedNft}) => {
 						}
 
 						{
-							selectedNft?.metadata.attributes.length > 0 && <div>
+							selectedNft?.metadata?.attributes?.length > 0 && <div>
 								<h2 className='font-extrabold text-lg my-2'>Attributes</h2>
 								<div className="flex flex-wrap">
 									{selectedNft?.metadata.attributes && selectedNft?.metadata.attributes.map((attribute,index) =>
