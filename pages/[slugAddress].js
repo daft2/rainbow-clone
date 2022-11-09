@@ -29,7 +29,7 @@ const Profile = () => {
 	const { slugAddress } = router.query
 	const provider = new ethers.providers.AlchemyProvider()
 	// eslint-disable-next-line no-undef
-	const web3 = createAlchemyWeb3(`https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`)
+	const web3 = createAlchemyWeb3(`https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`)
 
 	const handleModal = (nft) => {
 		setSelectedNft(nft)
